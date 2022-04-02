@@ -3,11 +3,6 @@
 $acao = 'filtrar';
 require 'tarefa_controller.php';
 
-
-
-
-
-
 ?>
 <html>
 
