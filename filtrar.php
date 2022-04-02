@@ -1,7 +1,9 @@
 <?php
 
-$acao = 'recuperar';
+$acao = 'filtrar';
 require 'tarefa_controller.php';
+
+
 
 
 
@@ -99,21 +101,23 @@ require 'tarefa_controller.php';
                 <div class="container pagina">
                     <div class="row">
                         <div class="col">
-                            <h4>Lista de filtro</h4>
-                            <form method="post" action="tarefa_controller.php?acao=filtrar">
+
+                            <form method="post" action="filtrar.php">
                                 <div class="form-group">
                                     <label for="equipamento">
-                                        <h5>Máquina</h5>
+                                        <h5>Digite a busca desejada:</h5>
                                     </label>
-                                    <div class="col-sm-9">
+                                    <div class="form-group col-sm-9">
                                         <input type="text" class="form-control" placeholder="DV_1000" name="filtro">
                                     </div>
+
+
 
                                 </div>
                                 <button class="btn btn-success">Filtrar</button>
                             </form>
                             <hr />
-
+                            <h4>Lista de filtros</h4>
                             <?php foreach ($tarefas as $indice => $tarefa) { ?>
 
 
