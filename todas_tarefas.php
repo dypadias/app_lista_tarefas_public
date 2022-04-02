@@ -91,7 +91,7 @@ require 'tarefa_controller.php';
 					<li class="list-group-item"><a href="index.php">Tarefas pendentes</a></li>
 					<li class="list-group-item"><a href="nova_tarefa.php">Nova tarefa</a></li>
 					<li class="list-group-item active"><a href="#">Todas tarefas</a></li>
-					<li class="list-group-item"><a href="filtar.php">Filtrar</a></li>
+					<li class="list-group-item"><a href="filtrar.php">Filtrar</a></li>
 				</ul>
 			</div>
 
@@ -103,10 +103,6 @@ require 'tarefa_controller.php';
 							<hr />
 
 							<?php foreach ($tarefas as $indice => $tarefa) { ?>
-
-
-
-
 
 								<div class="border row mb-3 d-flex align-items-center tarefa">
 									<div class="col-sm-9">
@@ -126,6 +122,7 @@ require 'tarefa_controller.php';
 										<h6>Data e Hora:</h6>
 									</div>
 									<div class="col-sm-9"><?= $tarefa->data_cadastrado ?> </div>
+
 									<div class="col-sm-9 mt-1">
 										<h6>Técnico Responsável:</h6>
 									</div>
@@ -139,7 +136,6 @@ require 'tarefa_controller.php';
 									</div>
 
 								</div>
-
 
 							<? } ?>
 						</div>
