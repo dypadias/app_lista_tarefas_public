@@ -1,3 +1,7 @@
+<?php
+
+
+?>
 <html>
 
 <head>
@@ -26,13 +30,9 @@
 		<div class="alert alert-success" role="alert">
 			<h4 class="alert-heading">Muito bem!</h4>
 			<p>Tarefa inclusa com sucesso</p>
-			<hr>
-			<p class="mb-0">Os ddados estão cadastrados no banco de dados</p>
-		</div>
-		<!-- <div class="bg-success pt-2 text-white d-flex justify-content-center">
-			<h5>Tarefa inclusa com sucesso</h5>
 
-		</div> -->
+		</div>
+
 	<? } ?>
 	<div class="container app">
 		<div class="row">
@@ -42,7 +42,7 @@
 					<li class="list-group-item active"><a href="#">Nova Ocorrência</a></li>
 					<li class="list-group-item"><a href="todas_tarefas.php">Todas Ocorrências</a></li>
 					<li class="list-group-item"><a href="filtrar.php">Filtrar</a></li>
-
+					<li class="list-group-item "><a href="tempo_total.php">Tempo total de parada</a></li>
 				</ul>
 			</div>
 
@@ -58,34 +58,53 @@
 								<div class="form-group">
 
 									<div class="form-group">
+										<!-- <label for="equipamento">
+											<h5>Máquina</h5>
+										</label>
+										<div class="col-sm-9">
+											<input type="text" class="form-control" placeholder="DV_1000" name="maquina"> -->
 										<label for="equipamento">
 											<h5>Máquina</h5>
 										</label>
 										<div class="col-sm-9">
-											<input type="text" class="form-control" placeholder="DV_1000" name="maquina">
+											<select class="form-control" name="maquina" id="maquina">
+												<option value="" select>Escolha uma máquina</option>
+												<option value="mp3">MP3</option>
+												<option value="t100">T100</option>
+												<option value="sincro1">SINCRO 1</option>
+												<option value="sincro2">SINCRO 2</option>
+												<option value="dv1000">DV-1000</option>
+											</select>
 										</div>
-										<label>
-											<h5>Técnico Responsável:</h5>
-										</label>
-										<div class="col-sm-9">
-											<input type="text" class="form-control" name="tecnico" placeholder="Exemplo: Frederico">
-										</div>
-										<label>
-											<h5>Ocorrência:</h5>
-										</label>
-										<div class="col-sm-9">
-											<input type="text" class="form-control" name="tarefa" placeholder="Exemplo: Falha o Sensor">
-										</div>
-										<label>
-											<h5>Serviço executado:</h5>
-										</label>
-										<div class="col-sm-9">
-											<input type="text" class="form-control" name="servico" placeholder="Exemplo: Reposicionar Sensor">
-										</div>
-
+									</div>
+									<label>
+										<h5>Técnico Responsável:</h5>
+									</label>
+									<div class="col-sm-9">
+										<select class="form-control" name="tecnico" id="maquina">
+											<option value="" select>Escolha uma Técnico</option>
+											<option value="Diego">Diego Matos</option>
+											<option value="Sandro">Sandro</option>
+											<option value="Paulo">Paulo</option>
+											<option value="Paulo">Itamar</option>
+										</select>
+									</div>
+									<label>
+										<h5>Ocorrência:</h5>
+									</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" name="tarefa" placeholder="Exemplo: Falha o Sensor">
+									</div>
+									<label>
+										<h5>Serviço executado:</h5>
+									</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" name="servico" placeholder="Exemplo: Reposicionar Sensor">
 									</div>
 
-									<button class="btn btn-success">Cadastrar</button>
+								</div>
+
+								<button class="btn btn-success">Cadastrar</button>
 							</form>
 						</div>
 					</div>

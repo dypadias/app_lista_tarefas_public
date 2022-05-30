@@ -1,6 +1,6 @@
 <?php
 
-$acao = 'filtrar';
+$acao = 'filtrar_total';
 require 'tarefa_controller.php';
 
 /* echo '<pre>';
@@ -89,11 +89,11 @@ echo '</pre>'; */
         <div class="row">
             <div class="col-sm-3 menu">
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="index.php">Ocorrências pendentes</a></li>
-                    <li class="list-group-item"><a href="nova_tarefa.php">Nova Ocorrência</a></li>
-                    <li class="list-group-item "><a href="todas_tarefas.php">Todas Ocorrências</a></li>
-                    <li class="list-group-item active"><a href="#">Filtrar ocorrencias</a></li>
-                    <li class="list-group-item "><a href="tempo_total.php">Tempo total de parada</a></li>
+                    <li class="list-group-item"><a href="index.php">Tarefas pendentes</a></li>
+                    <li class="list-group-item"><a href="nova_tarefa.php">Nova tarefa</a></li>
+                    <li class="list-group-item "><a href="todas_tarefas.php">Todas tarefas</a></li>
+                    <li class="list-group-item "><a href="filtrar.php">Filtrar ocorrencias</a></li>
+                    <li class="list-group-item active "><a href="tempo_total.php">Tempo total de parada</a></li>
                 </ul>
             </div>
 
@@ -102,69 +102,41 @@ echo '</pre>'; */
                     <div class="row">
                         <div class="col">
 
-                            <form method="post" action="filtrar.php">
+
+                            <form method="post" action="tempo_total.php">
                                 <div class="form-group">
+
                                     <label for="equipamento">
-                                        <h5>Digite a busca desejada:</h5>
+                                        <h5>Tempo total de parada por máquina:</h5>
                                     </label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="filtro" id="filtro">
-                                            <option value="m">Escolha uma máquina</option>
+                                            <option value="m" select>Escolha uma máquina</option>
                                             <option value="mp3">MP3</option>
                                             <option value="t100">T100</option>
                                             <option value="sincro2">SINCRO 2</option>
                                         </select>
                                     </div>
                                 </div>
-                                <button class="btn btn-success">Filtrar</button>
+                                <button class="btn btn-success ">Filtrar total</button>
 
                             </form>
-
-
-                            <hr />
-                            <h4>Lista de filtros</h4>
+                            </hr>
+                            <h4>Tempo de parada</h4>
                             <?php foreach ($tarefas as $indice => $tarefa) { ?>
-
-
                                 <div class="border row mb-3 d-flex align-items-center tarefa">
-
                                     <div class="col-sm-9">
-                                        <h5><?= ucfirst($tarefa->maquina)  ?></h5>
+                                        <h5><?= $tarefa->maquina ?></h5>
                                     </div>
-                                    <div class="col-sm-9 mt-1">
-                                        <h6>Ocorrência:</h6>
-                                    </div>
-                                    <div class="col-sm-9" id="tarefa_<?= $tarefa->id ?>">
-                                        <?= $tarefa->tarefa ?> (<?= $tarefa->status ?>)
-                                    </div>
-                                    <div class="col-sm-9 mt-1">
-                                        <h6>Descrição:</h6>
-                                    </div>
-                                    <div class="col-sm-9"><?= $tarefa->servico ?> </div>
-                                    <div class="col-sm-9 mt-1">
-                                        <h6>Data e Hora:</h6>
-                                    </div>
-                                    <div class="col-sm-9"><?= $tarefa->data_cadastrado ?> </div>
                                     <div class="col-sm-9 mt-1">
                                         <h6>Tempo de parada:</h6>
                                     </div>
-                                    <div class="col-sm-9"><?= $tarefa->tempo_parada ?>(minutos) </div>
-
-                                    <div class="col-sm-9 mt-1">
-                                        <h6>Técnico Responsável:</h6>
-                                    </div>
-                                    <div class="col-sm-9 mb-1"><?= $tarefa->tecnico ?> </div>
-                                    <div class="mb-2 mx-auto d-flex justify-content-between d-grid gap-3">
-                                        <a class="p-2 bg-light border" onClick="remover(<?= $tarefa->id ?>)" href=""><i class="fas fa-trash-alt fa-lg text-danger" onClick="remover(<?= $tarefa->id ?>)">Excluir</i></a>
-                                        <?php if ($tarefa->status == 'pendente') { ?>
-                                            <a class="p-2 bg-light border" href=""><i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')">Editar</i></a>
-                                            <a class="p-2 bg-light border" href=""><i class=" fas fa-check-square fa-lg text-success" onClick="marcarRealizada(<?= $tarefa->id ?>)">Concluir</i></a>
-                                        <? } ?>
-
-                                    </div>
-
+                                    <?php if (true) { ?>
+                                        <div class="col-sm-9"><?= $tarefa->parada_total ?>(horas)</div>
+                                    <? } else { ?>
+                                        <div class="col-sm-9"><?= $tarefa->parada_total ?>(horas)</div>
+                                    <? } ?>
                                 </div>
-
                             <? } ?>
 
                         </div>

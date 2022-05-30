@@ -2,6 +2,11 @@
 
 $acao = 'recuperar';
 require 'tarefa_controller.php';
+
+/* echo '<pre>';
+print_r($tarefas);
+echo '</pre>'; */
+
 ?>
 <html>
 
@@ -13,6 +18,8 @@ require 'tarefa_controller.php';
 	<link rel="stylesheet" href="css/estilo.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<link href="css/demo.css" rel="stylesheet" type="text/css">
+
 	<script>
 		function editar(id, txtTarefa) {
 			//Form de edição
@@ -73,7 +80,8 @@ require 'tarefa_controller.php';
 <body>
 	<nav class="navbar navbar-light bg-light">
 		<div class="container">
-			<a class="navbar-brand" href="#">
+			<a class="navbar-brand" href="">
+
 				<img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
 				Livro de Ocorrências
 			</a>
@@ -84,10 +92,11 @@ require 'tarefa_controller.php';
 		<div class="row">
 			<div class="col-sm-3 menu">
 				<ul class="list-group">
-					<li class="list-group-item"><a href="index.php">Tarefas pendentes</a></li>
-					<li class="list-group-item"><a href="nova_tarefa.php">Nova tarefa</a></li>
-					<li class="list-group-item active"><a href="#">Todas tarefas</a></li>
-					<li class="list-group-item"><a href="filtrar.php">Filtrar</a></li>
+					<li class="list-group-item"><a href="index.php">Ocorrências pendentes</a></li>
+					<li class="list-group-item"><a href="nova_tarefa.php">Nova Ocorrência</a></li>
+					<li class="list-group-item active"><a href="#">Todas Ocorrências</a></li>
+					<li class="list-group-item"><a href="filtrar.php">Filtrar Ocorrências</a></li>
+					<li class="list-group-item "><a href="tempo_total.php">Tempo total de parada</a></li>
 				</ul>
 			</div>
 
@@ -96,43 +105,62 @@ require 'tarefa_controller.php';
 					<div class="row">
 						<div class="col">
 							<h4>Todas Ocorrências</h4>
+
 							<hr />
 
 							<?php foreach ($tarefas as $indice => $tarefa) { ?>
 
-								<div class="border row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">
-										<h5><?= $tarefa->maquina ?></h5>
-									</div>
-									<div class="col-sm-9 mt-1">
-										<h6>Ocorrência:</h6>
-									</div>
-									<div class="col-sm-9" id="tarefa_<?= $tarefa->id ?>">
-										<?= $tarefa->tarefa ?> (<?= $tarefa->status ?>)
-									</div>
-									<div class="col-sm-9 mt-1">
-										<h6>Descrição:</h6>
-									</div>
-									<div class="col-sm-9"><?= $tarefa->servico ?> </div>
-									<div class="col-sm-9 mt-1">
-										<h6>Data e Hora:</h6>
-									</div>
-									<div class="col-sm-9"><?= $tarefa->data_cadastrado ?> </div>
+								<div class="col row mb-3 d-flex align-items-center tarefa ">
+									<div class="container border ">
+										<div class="col-sm-9">
+											<h4>Equipamento: <?= ucfirst($tarefa->maquina) ?></h4>
+										</div>
 
-									<div class="col-sm-9 mt-1">
-										<h6>Técnico Responsável:</h6>
-									</div>
-									<div class="col-sm-9 mb-1"><?= $tarefa->tecnico ?> </div>
-									<div class="col-sm-3 mx-auto d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger" onClick="remover(<?= $tarefa->id ?>)"></i>
-										<?php if ($tarefa->status == 'pendente') { ?>
-											<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')"></i>
-											<i class=" fas fa-check-square fa-lg text-success" onClick="marcarRealizada(<?= $tarefa->id ?>)"></i>
-										<? } ?>
-									</div>
+										<div class="col-sm-9 mt-1">
+											<h6>Ocorrência:</h6>
+										</div>
+										<div class="col-sm-9" id="tarefa_<?= $tarefa->id ?>">
+											<?= $tarefa->tarefa ?> (<?= $tarefa->status ?>)
+										</div>
 
+										<div class="col-sm-9 mt-1">
+											<h6>Descrição:</h6>
+										</div>
+										<div class="col-sm-9"><?= $tarefa->servico ?> </div>
+										<div class="col-sm-9 mt-1">
+											<h6>Data Inicial:</h6>
+										</div>
+										<div class="col-sm-9"><?= $tarefa->data_cadastrado ?> </div>
+										<div class="col-sm-9 mt-1">
+											<h6>Hora Inicial:</h6>
+										</div>
+										<div class="col-sm-9"><?= $tarefa->hora_cadastrado ?> </div>
+										<div class="col-sm-9 mt-1">
+											<h6>Data Final:</h6>
+										</div>
+										<div class="col-sm-9"><?= $tarefa->data_atualizado ?> </div>
+										<div class="col-sm-9 mt-1">
+											<h6>Hora Final:</h6>
+										</div>
+										<div class="col-sm-9"><?= $tarefa->hora_atualizado ?> </div>
+										<div class="col-sm-9 mt-1">
+											<h6>Tempo de parada:</h6>
+										</div>
+										<div class="col-sm-9"><?= $tarefa->tempo_parada ?>(minutos) </div>
+										<div class="col-sm-9 mt-1">
+											<h6>Técnico Responsável:</h6>
+										</div>
+										<div class="col-sm-9 mb-1"><?= $tarefa->tecnico ?> </div>
+										<div class="mb-2 mx-auto d-flex justify-content-between d-grid gap-3">
+											<a class="p-2 bg-light border" onClick="remover(<?= $tarefa->id ?>)" href=""><i class=" fas fa-trash-alt fa-lg text-danger" onClick="remover(<?= $tarefa->id ?>)">Excluir</i></a>
+											<?php if ($tarefa->status == 'pendente') { ?>
+												<a class="p-2 bg-light border" href=""><i class="fas fa-edit fa-lg text-info" onClick="editar(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')">Editar</i></a>
+												<a class="p-2 bg-light border" href=""><i class=" fas fa-check-square fa-lg text-success" onClick="marcarRealizada(<?= $tarefa->id ?>)">Concluir</i></a>
+											<? } ?>
+										</div>
+
+									</div>
 								</div>
-
 							<? } ?>
 						</div>
 					</div>

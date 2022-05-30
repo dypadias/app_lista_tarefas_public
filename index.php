@@ -87,10 +87,11 @@ require 'tarefa_controller.php';
 		<div class="row">
 			<div class="col-md-3 menu">
 				<ul class="list-group">
-					<li class="list-group-item active"><a href="#">Tarefas pendentes</a></li>
-					<li class="list-group-item"><a href="nova_tarefa.php">Nova tarefa</a></li>
-					<li class="list-group-item"><a href="todas_tarefas.php">Todas tarefas</a></li>
-					<li class="list-group-item"><a href="filtrar.php">Filtrar</a></li>
+					<li class="list-group-item active"><a href="#">Ocorrências pendentes</a></li>
+					<li class="list-group-item"><a href="nova_tarefa.php">Nova Ocorrência</a></li>
+					<li class="list-group-item"><a href="todas_tarefas.php">Todas Ocorrências</a></li>
+					<li class="list-group-item"><a href="filtrar.php">Filtrar Ocorrências</a></li>
+					<li class="list-group-item "><a href="tempo_total.php">Tempo total de parada</a></li>
 				</ul>
 			</div>
 
@@ -100,13 +101,12 @@ require 'tarefa_controller.php';
 						<div class="col">
 							<h4>Ocorrências pendentes</h4>
 							<hr />
-
 							<?php foreach ($tarefas as $indice => $tarefa) { ?>
 
-
 								<div class="border row mb-3 d-flex align-items-center tarefa">
+
 									<div class="col-sm-9">
-										<h5><?= $tarefa->maquina ?></h5>
+										<h5><?= ucfirst($tarefa->maquina) ?></h5>
 									</div>
 									<div class="col-sm-9 mt-1">
 										<h6>Ocorrência:</h6>
@@ -119,18 +119,24 @@ require 'tarefa_controller.php';
 									</div>
 									<div class="col-sm-9"><?= $tarefa->servico ?> </div>
 									<div class="col-sm-9 mt-1">
-										<h6>Data e Hora:</h6>
+										<h6>Data Inicial:</h6>
 									</div>
 									<div class="col-sm-9"><?= $tarefa->data_cadastrado ?> </div>
+									<div class="col-sm-9 mt-1">
+										<h6>Hora Inicial:</h6>
+									</div>
+									<div class="col-sm-9"><?= $tarefa->hora_cadastrado ?> </div>
+
 									<div class="col-sm-9 mt-1">
 										<h6>Técnico Responsável:</h6>
 									</div>
 									<div class="col-sm-9 mb-1"><?= $tarefa->tecnico ?> </div>
-									<div class="col-sm-3 mx-auto d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger" onClick="remover(<?= $tarefa->id ?>)"></i>
-										<i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')"></i>
-										<i class=" fas fa-check-square fa-lg text-success" onClick="marcarRealizada(<?= $tarefa->id ?>)"></i>
-
+									<div class="mb-2 mx-auto d-flex justify-content-between d-grid gap-3">
+										<a class="p-2 bg-light border" onClick="remover(<?= $tarefa->id ?>)" href=""><i class="fas fa-trash-alt fa-lg text-danger" onClick="remover(<?= $tarefa->id ?>)">Excluir</i></a>
+										<?php if ($tarefa->status == 'pendente') { ?>
+											<a class="p-2 bg-light border" href=""><i class="fas fa-edit fa-lg text-info" onclick="editar(<?= $tarefa->id ?>,'<?= $tarefa->tarefa ?>')">Editar</i></a>
+											<a class="p-2 bg-light border" href=""><i class=" fas fa-check-square fa-lg text-success" onClick="marcarRealizada(<?= $tarefa->id ?>)">Concluir</i></a>
+										<? } ?>
 									</div>
 
 								</div>
@@ -142,6 +148,7 @@ require 'tarefa_controller.php';
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 
